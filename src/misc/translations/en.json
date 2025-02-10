@@ -1,0 +1,20 @@
+{
+  "add": "add",
+  "new": "new",
+  "edit": "edit",
+  "delete": "delete",
+  "list": "list",
+  "theme": "theme",
+  "cancel": "cancel",
+  "save": "save",
+  "title": "Title",
+  "author": "Author",
+  "dateOfPublication": "Date of publication",
+  "text": "Text",
+  "noArticles": "No articles found",
+  "confirmDelete": "Do you really want to delete this article ?",
+  "confirmDiscard": "Do you really want to discard changes ?",
+  "discard": "discard",
+  "somethingWrong": "Something went wrong",
+  "tryAgain": "Try again"
+}
