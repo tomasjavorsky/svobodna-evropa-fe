@@ -2,8 +2,10 @@ import { CircularProgress } from '@mui/material'
 import { lazy, Suspense } from 'react'
 import { Navigate, Route, Routes } from 'react-router'
 
-const ArticleListPage = lazy(() => import('./pages/ArticleListPage'))
-const EditorPage = lazy(() => import('./pages/EditorPage'))
+const ArticleListPage = lazy(
+  () => import('./pages/ArticleListPage/ArticleListPage')
+)
+const EditorPage = lazy(() => import('./pages/EditorPage/EditorPage'))
 
 function App() {
   return (

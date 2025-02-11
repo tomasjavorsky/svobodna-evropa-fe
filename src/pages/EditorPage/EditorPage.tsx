@@ -1,24 +1,23 @@
 import ListIcon from '@mui/icons-material/List'
 import { Button, CircularProgress } from '@mui/material'
-import { lazy, Suspense } from 'react'
+import { Suspense } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router'
 import { tss } from 'tss-react/mui'
 
-import { ThemeToggle } from '../components'
-import { ApiError } from '../components/ApiError'
-import { EditorControls } from '../components/EditorControls'
-import { RootState } from '../redux/store'
-
-const ViewMode = lazy(() => import('../components/ViewMode'))
-const EditMode = lazy(() => import('../components/EditMode'))
+import { ThemeToggle } from '../../components'
+import { ApiError } from '../../components/ApiError'
+import EditMode from '../../components/EditMode/EditMode'
+import { EditorControls } from '../../components/EditorControls'
+import ViewMode from '../../components/ViewMode'
+import { selectEditorMode } from '../../redux/slices/editor/editorSlice'
 
 export default function EditorPage() {
   const { t } = useTranslation()
   const { classes } = useStyles()
   const navigate = useNavigate()
-  const editorMode = useSelector((state: RootState) => state.editor.mode)
+  const editorMode = useSelector(selectEditorMode)
 
   return (
     <div className={classes.root}>

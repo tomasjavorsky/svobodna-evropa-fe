@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router'
 import { tss } from 'tss-react/mui'
 
-import { getArticle } from '../redux/slices/articlesSlice'
-import { AppDispatch, RootState } from '../redux/store'
+import { getArticle, selectArticlesLoading, selectSelectedArticle } from '../redux/slices/articles/articlesSlice'
+import { AppDispatch } from '../redux/store'
 import { ArticleText } from './'
 
 export default function ViewMode() {
@@ -13,10 +13,8 @@ export default function ViewMode() {
   const dispatch = useDispatch<AppDispatch>()
   const { id } = useParams()
 
-  const loading = useSelector((state: RootState) => state.articles.loading)
-  const article = useSelector(
-    (state: RootState) => state.articles.selectedArticle
-  )
+  const loading = useSelector(selectArticlesLoading)
+  const article = useSelector(selectSelectedArticle)
 
   useEffect(() => {
     if (id) {

@@ -11,9 +11,11 @@ import { tss } from 'tss-react/mui'
 import {
   createBlankArticle,
   deleteArticle,
-} from '../redux/slices/articlesSlice'
-import { setMode } from '../redux/slices/editorSlice'
-import { AppDispatch, RootState } from '../redux/store'
+  selectArticlesLoading,
+  selectSelectedArticle,
+} from '../redux/slices/articles/articlesSlice'
+import { selectEditorMode, setMode } from '../redux/slices/editor/editorSlice'
+import { AppDispatch } from '../redux/store'
 import { CenteredModal } from './CenteredModal'
 import { CircularProgressOverlay } from './CircularProgressOverlay'
 
@@ -22,11 +24,9 @@ export function EditorControls() {
   const navigate = useNavigate()
   const dispatch = useDispatch<AppDispatch>()
   const { classes } = useStyles()
-  const editorMode = useSelector((state: RootState) => state.editor.mode)
-  const loading = useSelector((state: RootState) => state.articles.loading)
-  const articleId = useSelector(
-    (state: RootState) => state.articles.selectedArticle.id
-  )
+  const editorMode = useSelector(selectEditorMode)
+  const loading = useSelector(selectArticlesLoading)
+  const articleId = useSelector(selectSelectedArticle).id
 
   const [modalOpen, setModalOpen] = useState<boolean>(false)
 

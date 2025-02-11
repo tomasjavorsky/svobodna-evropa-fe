@@ -9,11 +9,16 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router'
 import { tss } from 'tss-react/mui'
 
-import { createArticle, updateArticle } from '../redux/slices/articlesSlice'
-import { setMode } from '../redux/slices/editorSlice'
-import { AppDispatch, RootState } from '../redux/store'
-import { CenteredModal } from './CenteredModal'
-import { CircularProgressOverlay } from './CircularProgressOverlay'
+import {
+  createArticle,
+  selectArticlesLoading,
+  selectSelectedArticle,
+  updateArticle,
+} from '../../redux/slices/articles/articlesSlice'
+import { setMode } from '../../redux/slices/editor/editorSlice'
+import { AppDispatch } from '../../redux/store'
+import { CenteredModal } from '../CenteredModal'
+import { CircularProgressOverlay } from '../CircularProgressOverlay'
 
 interface Fields {
   title: string
@@ -27,10 +32,8 @@ export default function EditMode() {
   const { t } = useTranslation()
   const navigate = useNavigate()
   const dispatch = useDispatch<AppDispatch>()
-  const loading = useSelector((state: RootState) => state.articles.loading)
-  const article = useSelector(
-    (state: RootState) => state.articles.selectedArticle
-  )
+  const loading = useSelector(selectArticlesLoading)
+  const article = useSelector(selectSelectedArticle)
 
   const [modalOpen, setModalOpen] = useState<boolean>(false)
 

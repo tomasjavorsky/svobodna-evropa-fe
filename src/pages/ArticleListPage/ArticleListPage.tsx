@@ -23,22 +23,23 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useSearchParams } from 'react-router'
 import { tss } from 'tss-react/mui'
 
-import { ApiError, ThemeToggle } from '../components/'
-import { validateSort } from '../misc/validateSort'
+import { ApiError, ThemeToggle } from '../../components'
+import { validateSort } from '../../misc/utils/validateSort/validateSort'
 import {
   ArticleInfo,
   createBlankArticle,
   getArticles,
-} from '../redux/slices/articlesSlice'
-import { setMode } from '../redux/slices/editorSlice'
-import { AppDispatch, RootState } from '../redux/store'
+  selectArticleList,
+} from '../../redux/slices/articles/articlesSlice'
+import { setMode } from '../../redux/slices/editor/editorSlice'
+import { AppDispatch, RootState } from '../../redux/store'
 
 export default function ArticleListPage() {
   const { classes } = useStyles()
   const { t } = useTranslation()
   const dispatch = useDispatch<AppDispatch>()
   const navigate = useNavigate()
-  const articleList = useSelector((state: RootState) => state.articles.list)
+  const articleList = useSelector(selectArticleList)
   const loading = useSelector((state: RootState) => state.articles.loading)
 
   const [searchParams, setSearchParams] = useSearchParams()
@@ -160,7 +161,7 @@ export default function ArticleListPage() {
                 </TableCell>
               </TableRow>
             </TableHead>
-            <TableBody>
+            <TableBody data-testid="table-body">
               {articleList.map((article) => (
                 <TableRow
                   key={article.id}

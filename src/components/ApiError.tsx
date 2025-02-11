@@ -4,11 +4,11 @@ import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 import { tss } from 'tss-react/mui'
 
-import { clearError } from '../redux/slices/articlesSlice'
-import { AppDispatch, RootState } from '../redux/store'
+import { clearError, selectArticlesError } from '../redux/slices/articles/articlesSlice'
+import { AppDispatch } from '../redux/store'
 
 export function ApiError() {
-  const error = useSelector((state: RootState) => state.articles.error)
+  const error = useSelector(selectArticlesError)
   const dispatch = useDispatch<AppDispatch>()
   const { classes } = useStyles()
   return (

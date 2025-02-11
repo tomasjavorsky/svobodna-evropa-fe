@@ -1,12 +1,14 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
+import { RootState } from '../../store'
+
 type EditorMode = 'view' | 'edit'
 
 interface EditorState {
   mode: EditorMode
 }
 
-const initialState: EditorState = {
+export const initialState: EditorState = {
   mode: 'view',
 }
 
@@ -22,3 +24,5 @@ const editorSlice = createSlice({
 
 export const { setMode } = editorSlice.actions
 export default editorSlice.reducer
+
+export const selectEditorMode = (state: RootState) => state.editor.mode

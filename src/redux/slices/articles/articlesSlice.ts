@@ -1,7 +1,8 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import dayjs from 'dayjs'
 
-import { baseURL } from '../../misc/consts'
+import { baseURL } from '../../../misc/consts'
+import { RootState } from '../../store'
 
 export interface Article {
   id: string
@@ -26,7 +27,7 @@ interface ArticlesState {
   error: string
 }
 
-const initialState: ArticlesState = {
+export const initialState: ArticlesState = {
   list: [],
   selectedArticle: {
     id: '',
@@ -209,3 +210,8 @@ export const deleteArticle = createAsyncThunk<boolean, string>(
 
 export const { createBlankArticle, clearError } = articlesSlice.actions
 export default articlesSlice.reducer
+
+export const selectArticlesLoading = (state: RootState) => state.articles.loading
+export const selectArticlesError = (state: RootState) => state.articles.error
+export const selectArticleList = (state: RootState) => state.articles.list
+export const selectSelectedArticle = (state: RootState) => state.articles.selectedArticle
